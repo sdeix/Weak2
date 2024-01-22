@@ -1,19 +1,25 @@
 <template>
     <div class="home">
-      <Products :prods="data"/>
+      <Products v-if="data" :prods="data"/>
+      <h1 v-else>Загрузка товаров</h1>
     </div>
   </template>
   
 <script setup>
 // @ is an alias to /src
 import Products from '@/components/Products.vue'
-import {useFetch} from '@vueuse/core'
-import { ref } from 'vue';
 
-const dat = ref(["qwe","qweqw"])
+import { ref } from 'vue';
+import axios from "axios"
+const data = ref(["qwe","qweqw"])
 const url = "https://jurapro.bhuser.ru/api-shop/products"
-const {isFetching, error, data} = useFetch(url).json()
-console.log(data)
+
+
+
+
+await axios.get(url).then(response => (data = response.data));
+console.log('info')
+
 
   </script>
-   
+
