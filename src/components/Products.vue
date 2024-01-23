@@ -1,9 +1,7 @@
-<template>
- <div class="products">
-        <ul>
-            <li v-for="(prod, index) in prods" :key="prod.id" @click="addProd(index)">id: {{ prod.id }} <br> <b>Название:</b> {{ prod.name }} <br> <b>Описание:</b> {{ prod.description }}</li>
-        </ul>
- </div>
+<template #default>
+<ul>
+    <li v-for="(prod, index) in prods" :key="prod.id" @click="addProd(index)">id: {{ prod.id }} <br> <b>Название:</b> {{ prod.name }} <br> <b>Описание:</b> {{ prod.description }}</li>
+</ul>
 </template>
 
 
