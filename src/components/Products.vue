@@ -1,7 +1,6 @@
 <template #default>
 <ul>
-    <button @click="Test2">Тест2</button>
-    <li v-for="(prod, index) in prods" :key="prod.id" @click="addProd(index)">id: {{ prod.id }} <br> <b>Название:</b> {{ prod.name }} <br> <b>Описание:</b> {{ prod.description }}</li>
+    <li v-for="(prod, index) in prods" :key="prod.id" @click="addProd(prod.id)">id: {{ prod.id }} <br> <b>Название:</b> {{ prod.name }} <br> <b>Описание:</b> {{ prod.description }}</li>
 </ul>
 </template>
 
@@ -19,7 +18,6 @@ export default {
   },
   methods:{
     async addProd(index){
-      console.log(this.token)
         if(this.token){
           const res = await fetch(`https://jurapro.bhuser.ru/api-shop/cart/${index}`,{
         method: "POST",
@@ -29,23 +27,9 @@ export default {
         }
       })
       const data = await res.json()
-        console.log(data)
+        this.$store.dispatch('getCart',this.token)
         }
     },    
-    async Test2(){
-      console.log(this.token)
-        if(this.token){
-          const res = await fetch('https://jurapro.bhuser.ru/api-shop/cart',{
-        method: "GET",
-        headers:{
-          'Content-Type': 'application/json',
-          'Authorization' : `Bearer ${this.token}`
-        }
-      })
-      const data = await res.json()
-        console.log(data)
-        }
-    }
   },
 
 

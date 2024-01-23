@@ -9,13 +9,37 @@ const getProducts = () => {
     },
   })
 }
+const getCart = (payload) => {
 
+  if(payload){
+    return fetch('https://jurapro.bhuser.ru/api-shop/cart',{
+      method: "GET",
+      headers:{
+        'Content-Type': 'application/json',
+        'Authorization' : `Bearer ${payload}`
+      }
+    })
+  }
+}
+const getOrders = (payload) => {
+  if(payload){
+    return fetch('https://jurapro.bhuser.ru/api-shop/order',{
+      method: "GET",
+      headers:{
+        'Content-Type': 'application/json',
+        'Authorization' : `Bearer ${payload}`
+      }
+    })
+  }
+}
 
 
 export default createStore({
   state: {
     token:null,
-    products:[]
+    products:[],
+    cart:[],
+    orders:[],
   },
   getters: {
     getToken(state){
@@ -23,6 +47,12 @@ export default createStore({
     },
     getProducts(state){
       return state.products
+    },
+    getCart(state){
+      return state.cart
+    },
+    getOrders(state){
+      return state.orders
     }
   },
   mutations: {
@@ -35,6 +65,12 @@ export default createStore({
     SET_PRODUCTS(state,payload){
       state.products=payload
     },
+    SET_CART(state,payload){
+      state.cart=payload
+    },
+    SET_ORDERS(state,payload){
+      state.orders = payload
+    }
   },
   actions: {
     setToken({commit}, payload){
@@ -47,12 +83,28 @@ export default createStore({
       try{
         const prod = await getProducts()
         console.log(prod.json().then(function(value){commit('SET_PRODUCTS', value)}))
-
-
       }
       catch(error){
         console.log(error)
       }
-    }
+    },
+    async getCart({commit}, payload){
+      try{
+        const prod = await getCart(payload)
+        console.log(prod.json().then(function(value){commit('SET_CART', value)}))
+      }
+      catch(error){
+        console.log(error)
+      }
+    },
+    async getOrders({commit}, payload){
+      try{
+        const prod = await getOrders(payload)
+        console.log(prod.json().then(function(value){commit('SET_ORDERS', value)}))
+      }
+      catch(error){
+        console.log(error)
+      }
+    },   
   },
 })

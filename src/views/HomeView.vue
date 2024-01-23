@@ -1,7 +1,7 @@
 <template>
   <div class="home">
 
-    <Products :prods="qw"/>
+    <Products />
   </div>
 </template>
 
