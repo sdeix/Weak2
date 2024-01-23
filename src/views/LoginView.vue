@@ -25,6 +25,7 @@
         <button type="submit" class="" > Подтвердить </button>
       </div>
     </form>
+    <p v-if="errors">{{errors}}</p>
 </div>
 </template>
   
@@ -37,7 +38,7 @@ export default {
         email: '',
         password: '' 
       },
-      errors: []
+      errors: ''
     }
   },
   methods: {
@@ -66,7 +67,15 @@ export default {
       })
       console.log(res)
     const data = await res.json()
-    console.log(data.data['user_token'])
+    if(res.status==200){
+      this.errors =''
+      console.log(data.data['user_token'])
+    }
+    else if(res.status==401){
+      this.errors =''
+      this.errors="Ошибка авторизации"
+    }
+    
     }
   }
 }

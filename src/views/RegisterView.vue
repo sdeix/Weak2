@@ -7,7 +7,7 @@
       <input
         type="text"
         class=""
-        placeholder="Ваше ФИО"
+        placeholder="Фамилия Имя Отчество"
         v-model="form.fio"
       >
     </label>
@@ -34,6 +34,7 @@
       <button type="submit" class="" > Подтвердить </button>
     </div>
   </form>
+  <p v-if="errors">{{errors}}</p>
 </div>
 </template>
 
@@ -77,7 +78,14 @@ methods: {
     })
     console.log(res)
     const data = await res.json()
-    console.log(data.data['user_token'])
+    if(res.status==201){
+      this.errors =''
+      console.log(data.data['user_token'])
+    }
+    else if(res.status==422){
+      this.errors =''
+      this.errors="Ошибка валидации полей"
+    }
   }
 }
 }
