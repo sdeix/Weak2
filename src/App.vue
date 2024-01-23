@@ -1,12 +1,54 @@
 <template>
   <nav>
     <router-link to="/">Home</router-link> |
-    <router-link to="/catalog">Каталог</router-link>
-    <router-link to="/login">Авторизация</router-link>
-    <router-link to="/register">Регистрация</router-link>
+    <router-link to="/catalog">Каталог</router-link> |
+    <router-link to="/login">Авторизация</router-link> |
+    <router-link to="/register">Регистрация</router-link> |
+    <a href="#" @click="Log">log</a>\
+    <a href="#" @click="LogOut">Выйти</a>
   </nav>
   <router-view/>
 </template>
+
+<script>
+export default {
+name: 'LoginView',
+data() {
+  return {
+    form: {
+      fio: '',
+      email: '',
+      password: '' ,
+      token:null
+    },
+    errors: ""
+  }
+},
+methods: {
+  Log() {
+    console.log(this.token)
+  },
+  LogOut() {
+    console.log(this.token)
+    localStorage.clear()
+    this.token=null
+  },
+},
+mounted() {
+            if (localStorage.getItem('token')) {
+                  try {
+                    this.token = localStorage.getItem('token');
+                  } catch(e) {
+                    localStorage.removeItem('token');
+                  }
+            }
+    },
+}
+</script>
+
+
+
+
 
 <style>
 #app {

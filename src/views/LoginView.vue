@@ -42,18 +42,6 @@ export default {
     }
   },
   methods: {
-    changeUserState() {
-      if (this.auth) {
-        localStorage.removeItem('auth')
-        this.$router.push({ name: 'main'})
-      } else {
-        localStorage.setItem('auth', true)
-        this.auth = true
-      }
-    },
-    close() {
-      this.$emit('close')
-    },
     async SignIn(){
       const res = await fetch('https://jurapro.bhuser.ru/api-shop/login',{
         method: "POST",
@@ -65,11 +53,12 @@ export default {
           password:this.form.password
         })
       })
-      console.log(res)
     const data = await res.json()
     if(res.status==200){
       this.errors =''
       console.log(data.data['user_token'])
+      localStorage.setItem('token',data.data['user_token'])
+      this.$router.push('/');
     }
     else if(res.status==401){
       this.errors =''
