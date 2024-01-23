@@ -1,10 +1,8 @@
 <template>
   <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/catalog">Каталог</router-link> |
+    <router-link to="/">Каталог</router-link> |
     <router-link to="/login">Авторизация</router-link> |
     <router-link to="/register">Регистрация</router-link> |
-    <a href="#" @click="Log">log</a>\
     <a href="#" @click="LogOut">Выйти</a>
   </nav>
   <router-view/>
@@ -25,12 +23,10 @@ data() {
   }
 },
 methods: {
-  Log() {
-    console.log(this.token)
-  },
   LogOut() {
     console.log(this.token)
     localStorage.clear()
+    this.$store.dispatch('deleteToken')
     this.token=null
   },
 },
@@ -43,6 +39,9 @@ mounted() {
                   }
             }
     },
+created(){
+  this.$store.dispatch('getProducts')
+}
 }
 </script>
 

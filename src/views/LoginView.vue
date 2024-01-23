@@ -57,6 +57,7 @@ export default {
     if(res.status==200){
       this.errors =''
       console.log(data.data['user_token'])
+      this.$store.dispatch('setToken',data.data['user_token'])
       localStorage.setItem('token',data.data['user_token'])
       this.$router.push('/');
     }

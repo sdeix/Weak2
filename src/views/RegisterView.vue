@@ -69,6 +69,7 @@ methods: {
     if(res.status==201){
       this.errors =''
       console.log(data.data['user_token'])
+      this.$store.dispatch('setToken',data.data['user_token'])
       localStorage.setItem('token',data.data['user_token'])
       this.$router.push('/');
     }

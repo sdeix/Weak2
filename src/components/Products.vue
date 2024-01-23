@@ -8,14 +8,17 @@
 <script>
 export default {
     name: "Products",
-    props: {
-    prods: Object
+    computed: {
+    prods(){
+        return this.$store.getters.getProducts.data
+    }
   },
   methods:{
     addProd(index){
         console.log(index)
     }
   }
+
 }
 
 </script>
