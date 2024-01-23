@@ -6,7 +6,7 @@
         Email
         <input
           type="text"
-          class="form-control"
+          class=""
           placeholder="Ваша эл. почта"
           v-model="form.email"
         >
@@ -15,7 +15,7 @@
         Пароль
         <input
           type="password"
-          class="form-control"
+          class=""
           placeholder="Ваш пароль"
           v-model="form.password"
         >
@@ -65,6 +65,8 @@ export default {
         })
       })
       console.log(res)
+    const data = await res.json()
+    console.log(data.data['user_token'])
     }
   }
 }
