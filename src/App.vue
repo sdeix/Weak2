@@ -37,6 +37,7 @@ methods: {
     this.token=null
   },
 },
+
 created(){
   this.$store.dispatch('getProducts')
 if (localStorage.getItem('token')) {

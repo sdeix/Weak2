@@ -1,8 +1,21 @@
-<template #default>
-    <ul v-if="prods.length!=0">
-        <li  v-for="(prod, index) in prods" :key="prod.id" @click="addProd(prod.id)">{{ prod }}</li>
+<template >
+    <div v-if="prods">
+    <ul class="orders" v-if="prods.length!=0">
+        <li class="order" v-for="(prod, index) in prods">
+            <ul>
+                <p>Заказ № {{ index+1 }}</p>
+                <li>ID в корзине:{{ prod.id }}</li>
+                <li>Id продуктов <ul class="products">
+                    <li v-for="i in  prod.products">Id продукта: {{ i }}</li>
+                </ul>
+                    
+                </li>
+                <li>Цена заказа: {{ prod.order_price }}</li>
+            </ul>
+        </li>
     </ul>
     <h1 v-else>Нет заказов</h1>
+</div>
     </template>
     
     
@@ -25,19 +38,31 @@
     
     </script>
     
-    <style>
-    ul{
+    <style scoped>  
+    .orders{
         list-style-type: none;
-        margin:0;
+        margin-top:50px;
         padding: 0;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
     }
+    .order{
+        margin-top:50px;
+        padding: 10px;
+        display: flex;
+        border: 1px black solid;
+        border-radius: 4px;
+    }
+    .products{
+        margin-left: 20px;
+        padding-bottom: 10px;
+    }
     li{
-        margin:0;
+        margin-top:10px;
         padding: 0;
-        width: 200px;
-        height: 350px;
+        width: 300px;
+        height: auto;
+        text-align: justify;
     }
     </style>

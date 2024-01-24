@@ -1,11 +1,13 @@
-<template #default>
+<template>
 <ul>
-    <li v-for="(prod, index) in prods" :key="prod.id" @click="addProd(prod.id)">id: {{ prod.id }} <br> <b>Название:</b> {{ prod.name }} <br> <b>Описание:</b> {{ prod.description }}</li>
+    <li class="prod" v-for="(prod, index) in prods" :key="prod.id">id: {{ prod.id }} <br> <b>Название:</b> {{ prod.name }} <br> <b>Описание:</b> {{ prod.description }} <br> <b>Цена:</b> {{ prod.price }}
+    <button @click="addProd(prod.id)"> Добавить в корзину</button>
+    </li>
 </ul>
 </template>
 
 
-<script>
+<script scoped>
 export default {
     name: "Products",
     computed: {
@@ -37,7 +39,7 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
 ul{
     list-style-type: none;
     margin:0;
@@ -50,6 +52,13 @@ li{
     margin:0;
     padding: 0;
     width: 200px;
-    height: 350px;
+    
+}
+.prod{
+  margin-top:50px;
+        padding: 10px;
+        border: 1px black solid;
+        border-radius: 4px;
+        text-align: justify;
 }
 </style>
