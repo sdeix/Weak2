@@ -1,19 +1,13 @@
-# my-app
+# Зайти в директорию Weak2
 
-## Project setup
+## Установить все нужные модули
 ```
-npm install
+npm in
 ```
 
-### Compiles and hot-reloads for development
+### Запустить сервер
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
