@@ -36,7 +36,7 @@ const getOrders = (payload) => {
 
 export default createStore({
   state: {
-    token:null,
+    token: localStorage.getItem('token') || '',
     products:[],
     cart:[],
     orders:[],
@@ -45,6 +45,7 @@ export default createStore({
     getToken(state){
       return state.token
     },
+    isAuthenticated: (state) => !!state.token,
     getProducts(state){
       return state.products
     },

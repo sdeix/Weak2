@@ -1,7 +1,7 @@
 <template>
 <ul>
     <li class="prod" v-for="(prod, index) in prods" :key="prod.id">id: {{ prod.id }} <br> <b>Название:</b> {{ prod.name }} <br> <b>Описание:</b> {{ prod.description }} <br> <b>Цена:</b> {{ prod.price }}
-    <button @click="addProd(prod.id)"> Добавить в корзину</button>
+    <button v-if="token" @click="addProd(prod.id)"> Добавить в корзину</button>
     </li>
 </ul>
 </template>

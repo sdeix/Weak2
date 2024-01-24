@@ -1,14 +1,14 @@
 <template>
   <nav>
     <router-link to="/">Каталог</router-link> |
-    <span v-if="!token" >
+    <span v-show="!userAuthed" >
       <router-link  to="/login">Авторизация</router-link> |
       <router-link  to="/register">Регистрация</router-link> |
     </span>
-    <span v-else>
+    <span v-show="userAuthed">
       <router-link to="/cart">Корзина</router-link> |
       <router-link to="/orders">Заказы</router-link> |
-      <a href="#" v-if="token" @click="LogOut">Выйти</a>
+      <button @click="LogOut">Выйти</button>
     </span>
 
   </nav>
@@ -29,12 +29,19 @@ data() {
     errors: ""
   }
 },
+computed: {
+        userAuthed() {
+            return this.$store.getters.isAuthenticated
+        }
+    },
 methods: {
   LogOut() {
-    console.log(this.token)
-    localStorage.clear()
-    this.$store.dispatch('deleteToken')
-    this.token=null
+    this.$store.dispatch('deleteToken').then(() => {
+      this.$router.push('/')
+    }
+    ).catch((error) => {
+                console.error('Logout failed:', error);
+    });
   },
 },
 
