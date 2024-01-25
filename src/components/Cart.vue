@@ -4,8 +4,8 @@
 
 <ul v-if="cart.length">
     <li v-for="(prod, index) in cart" :key="prod.id" > <b>Название:</b> {{ prod.name }} <br> <b>Описание:</b> {{ prod.description }} <br> <b>id товара:</b> {{ prod.product_id }} <br> <b>Цена:</b> {{ prod.price }} <br> <b>Колличество:</b> {{ prod.count }}
-        <button @click="addProd(prod.product_id)"> Добавить в корзину</button>
-        <button @click="removeProd(prod.id)"> Убрать из корзины</button>
+        <button class="add" @click="addProd(prod.product_id)"> Добавить в корзину</button>
+        <button class="remove" @click="removeProd(prod.id)"> Убрать из корзины</button>
     </li>
 </ul>
 
@@ -59,6 +59,19 @@ export default {
       })
       const data = await res.json()
         this.$store.dispatch('getCart',this.token)
+        const buttons =document.getElementsByClassName('add')
+        for (let p in buttons){
+          try{
+            if(Number.isInteger(Number(p))){
+            buttons[p].disabled=true
+            setTimeout(() => {
+              buttons[p].disabled = false;
+            }, 2000);
+          }
+          }
+          catch(err){
+          }
+        }
         }
     },
     async removeProd(index){
