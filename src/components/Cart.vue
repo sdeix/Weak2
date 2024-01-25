@@ -42,12 +42,15 @@ export default {
     },
     token(){
         return this.$store.getters.getToken
+    },
+    host(){
+        return this.$store.getters.getHost
     }
     },
     methods:{
     async addProd(index){
         if(this.token){
-          const res = await fetch(`https://jurapro.bhuser.ru/api-shop/cart/${index}`,{
+          const res = await fetch(`${this.host}/cart/${index}`,{
         method: "POST",
         headers:{
           'Content-Type': 'application/json',
@@ -60,7 +63,7 @@ export default {
     },
     async removeProd(index){
         if(this.token){
-          const res = await fetch(`https://jurapro.bhuser.ru/api-shop/cart/${index}`,{
+          const res = await fetch(`${this.host}/cart/${index}`,{
         method: "DELETE",
         headers:{
           'Content-Type': 'application/json',
@@ -74,7 +77,7 @@ export default {
     async Order(){
         console.log(typeof this.token)
         if(this.token){
-          const res = await fetch(`https://jurapro.bhuser.ru/api-shop/order`,{
+          const res = await fetch(`${this.host}/order`,{
         method: "POST",
         headers:{
           'Content-Type': 'application/json',

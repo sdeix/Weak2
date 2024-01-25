@@ -40,6 +40,7 @@ export default createStore({
     products:[],
     cart:[],
     orders:[],
+    host: 'https://jurapro.bhuser.ru/api-shop'
   },
   getters: {
     getToken(state){
@@ -54,7 +55,11 @@ export default createStore({
     },
     getOrders(state){
       return state.orders
+    },
+    getHost(state){
+      return state.host
     }
+
   },
   mutations: {
     SET_TOKEN(state,payload){

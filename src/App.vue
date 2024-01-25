@@ -32,7 +32,8 @@ data() {
 computed: {
         userAuthed() {
             return this.$store.getters.isAuthenticated
-        }
+        },
+        
     },
 methods: {
   LogOut() {

@@ -41,9 +41,14 @@ export default {
       errors: ''
     }
   },
+  computed:{
+    host(){
+        return this.$store.getters.getHost
+    }
+  },
   methods: {
     async SignIn(){
-      const res = await fetch('https://jurapro.bhuser.ru/api-shop/login',{
+      const res = await fetch(`${this.host}/login`,{
         method: "POST",
         headers:{
           'Content-Type': 'application/json'
