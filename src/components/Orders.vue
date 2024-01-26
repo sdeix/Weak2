@@ -11,7 +11,7 @@
   </div>
     <div v-if="prods">
     <ul class="orders" v-if="prods.length!=0">
-        <li class="order" v-for="(prod, index) in prods">
+        <li class="order col-xxl-2 col-sm-5 col-11 ms-1  rounded border-4 border border-secondary" v-for="(prod, index) in prods">
             <ul>
                 <p>Заказ № {{ index+1 }}</p>
                 <li>Продукты в заказе <ul class="products">
@@ -105,7 +105,6 @@
     li{
         margin-top:10px;
         padding: 0;
-        width: 300px;
         height: auto;
         text-align: justify;
     }

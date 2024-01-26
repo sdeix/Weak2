@@ -167,4 +167,13 @@ export default {
     transform: translate(-50%, -50%) rotate(360deg);
   }
 }
+.router-link-active{
+  color: #6c757d;
+  font-weight: bolder;
+  text-decoration: underline;
+}
+a{
+  color: #97a0a9;
+  text-decoration: none;
+}
 </style>

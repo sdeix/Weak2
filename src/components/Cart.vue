@@ -10,16 +10,17 @@
       </div>
     </div>
   </div>
-
-<ul v-if="cart.length">
-    <li v-for="(prod, index) in cart" :key="prod.id" > <b>Название:</b> {{ prod.name }} <br> <b>Описание:</b> {{ prod.description }} <br> <b>id товара:</b> {{ prod.product_id }} <br> <b>Цена:</b> {{ prod.price }} <br> <b>Колличество:</b> {{ prod.count }}
-        <button class="add" @click="addProd(prod.product_id)"> Добавить в корзину</button>
-        <button class="remove" @click="removeProd(prod.id)"> Убрать из корзины</button>
+  <button  v-if="cart.length" class="btn  btn-secondary  w-25" @click="Order()">Заказать</button>
+<ul v-if="cart.length" class="row">
+    <li class="col-xxl-4 col-lg-6 col-12 rounded border-4 border border-secondary " v-for="(prod, index) in cart" :key="prod.id" > <b>Название:</b> {{ prod.name }} <br> <b>Описание:</b> {{ prod.description }} <br> <b>id товара:</b> {{ prod.product_id }} <br> <b>Цена:</b> {{ prod.price }} <br> <b>Колличество:</b> {{ prod.count }}
+        <br>
+      <button class="add btn btn-outline-secondary " @click="addProd(prod.product_id)"> Добавить в корзину</button>
+        <button class="remove btn btn-outline-secondary ms-1 " @click="removeProd(prod.id)"> Убрать из корзины</button>
     </li>
 </ul>
 
 <h1 v-else>Нет товаров в корзине</h1>
-<button  v-if="cart.length" @click="Order()">Заказать</button>
+
 </div>
 </template>
 
@@ -150,9 +151,12 @@ ul{
         border-radius: 4px;
 }
 li{
-    margin-bottom:20px;
-    padding: 0;
+    margin:20px 0;
+    padding-right:   50px ;
+    padding-bottom: 20px;
+    padding-top: 20px;
     text-align: justify;
+
 
     
 }
@@ -161,4 +165,5 @@ li{
 
 
 }
+
 </style>

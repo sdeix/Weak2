@@ -10,8 +10,9 @@
     </div>
   </div>
 <ul>
-    <li class="prod" v-for="(prod, index) in prods" :key="prod.id">id: {{ prod.id }} <br> <b>Название:</b> {{ prod.name }} <br> <b>Описание:</b> {{ prod.description }} <br> <b>Цена:</b> {{ prod.price }}
-    <button class="add"  v-if="token" @click="addProd(prod.id)"> Добавить в корзину</button>
+    <li class="prod col-xxl-3 col-lg-5 col-11 ms-1  rounded border-4 border border-secondary" v-for="(prod, index) in prods" :key="prod.id">id: {{ prod.id }} <br> <b>Название:</b> {{ prod.name }} <br> <b>Описание:</b> {{ prod.description }} <br> <b>Цена:</b> {{ prod.price }}
+    <br>
+      <button class="add btn btn-outline-secondary w-100"  v-if="token" @click="addProd(prod.id)"> Добавить в корзину</button>
     </li>
 </ul>
 </template>
@@ -81,19 +82,13 @@ ul{
     padding: 0;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 li{
-    margin:0;
-    padding: 0;
-    width: 200px;
+    margin:10px;
+    padding: 10px ;
+    text-align: left;
     
 }
-.prod{
-  margin-top:50px;
-        padding: 10px;
-        border: 1px black solid;
-        border-radius: 4px;
-        text-align: justify;
-}
+
 </style>
