@@ -1,4 +1,14 @@
 <template>
+    <div id="page" class="preloader">
+    <div class="loader-line1">
+
+      <div class="loader-line2">
+
+        <div class="loader-line3">
+        </div>
+      </div>
+    </div>
+  </div>
 <ul>
     <li class="prod" v-for="(prod, index) in prods" :key="prod.id">id: {{ prod.id }} <br> <b>Название:</b> {{ prod.name }} <br> <b>Описание:</b> {{ prod.description }} <br> <b>Цена:</b> {{ prod.price }}
     <button class="add"  v-if="token" @click="addProd(prod.id)"> Добавить в корзину</button>
@@ -20,6 +30,15 @@ export default {
     host(){
         return this.$store.getters.getHost
     }
+  },
+  mounted() {
+    this.$nextTick(function () {
+      var page_preloader = document.getElementById("page");
+      setTimeout(function () {
+        page_preloader.style.display = "none";
+
+      }, 1000);
+    })
   },
   methods:{
     async addProd(index){

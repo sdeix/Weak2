@@ -1,6 +1,15 @@
 <template >
 <div v-if="cart">
+  <div id="page" class="preloader">
+    <div class="loader-line1">
 
+      <div class="loader-line2">
+
+        <div class="loader-line3">
+        </div>
+      </div>
+    </div>
+  </div>
 
 <ul v-if="cart.length">
     <li v-for="(prod, index) in cart" :key="prod.id" > <b>Название:</b> {{ prod.name }} <br> <b>Описание:</b> {{ prod.description }} <br> <b>id товара:</b> {{ prod.product_id }} <br> <b>Цена:</b> {{ prod.price }} <br> <b>Колличество:</b> {{ prod.count }}
@@ -45,8 +54,18 @@ export default {
     },
     host(){
         return this.$store.getters.getHost
-    }
     },
+    
+    },
+    mounted() {
+    this.$nextTick(function () {
+      var page_preloader = document.getElementById("page");
+      setTimeout(function () {
+        page_preloader.style.display = "none";
+
+      }, 1000);
+    })
+  },
     methods:{
     async addProd(index){
         if(this.token){
