@@ -1,12 +1,21 @@
 <template >
+        <div id="page" class="preloader">
+    <div class="loader-line1">
+
+      <div class="loader-line2">
+
+        <div class="loader-line3">
+        </div>
+      </div>
+    </div>
+  </div>
     <div v-if="prods">
     <ul class="orders" v-if="prods.length!=0">
-        <li class="order" v-for="(prod, index) in prods">
+        <li class="order col-xxl-2 col-sm-5 col-11 ms-1  rounded border-4 border border-secondary" v-for="(prod, index) in prods">
             <ul>
                 <p>Заказ № {{ index+1 }}</p>
-                <li>ID в корзине:{{ prod.id }}</li>
-                <li>Id продуктов <ul class="products">
-                    <li v-for="i in  prod.products">Id продукта: {{ i }}</li>
+                <li>Продукты в заказе <ul class="products">
+                    <li v-for="i in    countproducts[index] ">Id: {{ i.id }} - {{ i.count }}шт.</li>
                 </ul>
                     
                 </li>
@@ -24,14 +33,49 @@
         name: "Orders",
         computed: {
         prods(){
-            return this.$store.getters.getOrders.data
+          return this.$store.getters.getOrders.data  
         },
         token(){
             return this.$store.getters.getToken
-        }
+        },
+        countproducts(){
+
+            const cart = this.$store.getters.getOrders.data
+            let cart2 = []
+
+            if(cart){
+            for(let i in cart){
+            cart2.push(cart[i].products)
+            }
+            }
+            let resultArray = []
+            for(let item of cart2){
+                let resultObject = {}
+                for(let i in item){
+                    const resultValue = resultObject[item[i]]
+                    if(resultValue){
+                        resultObject[item[i]].count+=1
+                    }
+                    else{
+                        resultObject[item[i]] = {id:item[i],count:1} 
+                    }
+                    
+                }
+                resultArray.push(resultObject)
+            }
+
+            return resultArray
+            }
       },
-      methods:{ 
-      },
+      mounted() {
+    this.$nextTick(function () {
+      var page_preloader = document.getElementById("page");
+      setTimeout(function () {
+        page_preloader.style.display = "none";
+
+      }, 1000);
+    })
+  },
     
     
     }
@@ -61,7 +105,6 @@
     li{
         margin-top:10px;
         padding: 0;
-        width: 300px;
         height: auto;
         text-align: justify;
     }

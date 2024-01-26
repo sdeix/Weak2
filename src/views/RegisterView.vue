@@ -51,9 +51,14 @@ data() {
     errors: ""
   }
 },
+computed:{
+    host(){
+        return this.$store.getters.getHost
+    }
+  },
 methods: {
   async SignUp(){
-    const res = await fetch('https://jurapro.bhuser.ru/api-shop/signup',{
+    const res = await fetch(`${this.host}/signup`,{
       method: "POST",
       headers:{
         'Content-Type': 'application/json'

@@ -1,28 +1,28 @@
 <template>
+
     <div class="login">
       <form @submit.prevent="SignIn">
       <h3>Войти</h3>
-      <label>
+      <label class="form-label">
         Email
-        <input
+        <input 
           type="text"
-          class=""
+          class="form-control"
           placeholder="Ваша эл. почта"
           v-model="form.email"
         >
       </label>
-      <label>
+      <label class="form-label">
         Пароль
         <input
           type="password"
-          class=""
+          class="form-control"
           placeholder="Ваш пароль"
           v-model="form.password"
         >
       </label>
       <div class="actions">
-        <button type="button" class="">Отмена</button>
-        <button type="submit" class="" > Подтвердить </button>
+        <button type="submit" class="btn btn-primary" > Подтвердить </button>
       </div>
     </form>
     <p v-if="errors">{{errors}}</p>
@@ -41,9 +41,14 @@ export default {
       errors: ''
     }
   },
+  computed:{
+    host(){
+        return this.$store.getters.getHost
+    }
+  },
   methods: {
     async SignIn(){
-      const res = await fetch('https://jurapro.bhuser.ru/api-shop/login',{
+      const res = await fetch(`${this.host}/login`,{
         method: "POST",
         headers:{
           'Content-Type': 'application/json'
