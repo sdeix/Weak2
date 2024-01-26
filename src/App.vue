@@ -1,17 +1,35 @@
 <template>
-  <nav>
-    <router-link to="/">Каталог</router-link> |
-    <span v-show="!userAuthed">
-      <router-link to="/login">Авторизация</router-link> |
-      <router-link to="/register">Регистрация</router-link> |
-    </span>
-    <span v-show="userAuthed">
-      <router-link to="/cart">Корзина</router-link> |
-      <router-link to="/orders">Заказы</router-link> |
-      <button @click="LogOut">Выйти</button>
-    </span>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Просто купить</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item ms-1">
+          <router-link to="/">Каталог</router-link> 
+        </li>
+        <li class="nav-item ms-1">
+          <router-link v-show="!userAuthed" to="/login">Авторизация</router-link>
+        </li>
+        <li class="nav-item ms-1">
+          <router-link v-show="!userAuthed" to="/register">Регистрация</router-link>
+        </li>
+        <li class="nav-item ms-1">
+          <router-link v-show="userAuthed" to="/cart">Корзина</router-link>
+        </li>
+        <li class="nav-item ms-1">
+          <router-link v-show="userAuthed" to="/orders">Заказы</router-link>
+        </li>
+      </ul>
+      <div v-show="userAuthed" >
+        <button @click="LogOut" class="btn btn-outline-success" >Выйти</button>
+      </div>
+    </div>
+  </div>
+</nav>
 
-  </nav>
   <router-view />
 </template>
 
@@ -76,19 +94,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
 }
 
 .preloader {
